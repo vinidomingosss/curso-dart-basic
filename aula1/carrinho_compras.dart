@@ -1,5 +1,4 @@
-import 'dart:async';
-import 'dart:io'; //importa para usar o readlineSync
+import 'dart:io';//importa para usar o readlineSync
 
 List<String> produtos = [];
 
@@ -14,13 +13,22 @@ imprimir(){
 }
 
 remover(){
-  print('Remover qual item? ');
-  imprimir();
-  int item = int.parse(stdin.readLineSync());
-  String produtoRemovido = produtos[item-1];
-  produtos.removeAt(item-1);
-  print('\x1B[2J\x1B[0;0H');
-  print('$produtoRemovido removido com sucesso !');
+  bool removeu = false;
+  do{
+    print('Remover qual item? ');
+    imprimir();
+    int item = stdin.readByteSync();
+    if (item < 1 || item > produtos.length){
+      print('\x1B[2J\x1B[0;0H');
+      print('Produto Invalido !');
+    }else{
+      String produtoRemovido = produtos[item-1];
+      produtos.removeAt(item-1);
+      removeu = true;
+      print('\x1B[2J\x1B[0;0H');
+      print('$produtoRemovido removido com sucesso !');
+    }
+  }while(removeu != true);
 }
 
 menu(){
@@ -40,12 +48,15 @@ menu(){
     }else if(opcao == '2'){
       print('\x1B[2J\x1B[0;0H');
       imprimir();
-    }else if(opcao == '3'){
+    }else if(opcao == '3' && produtos.length > 0){
       print('\x1B[2J\x1B[0;0H');
       remover();
-    }else{
+    }else if (opcao == '4'){
       print('######### Programa finalizado ! #########');
       print('\x1B[2J\x1B[0;0H'); // limpa tela
+    }else{
+      print('\x1B[2J\x1B[0;0H');
+      print('Comando Invalido !');
     }
   }while (opcao != '4');
 }
