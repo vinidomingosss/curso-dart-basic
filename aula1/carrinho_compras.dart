@@ -10,6 +10,7 @@ imprimir(){
   for (var i = 0; i < produtos.length; i++) {
     print('Item: ${i+1} - ${produtos[i]}');
   };
+  print('\n');
 }
 
 remover(){
@@ -17,7 +18,7 @@ remover(){
   do{
     print('Remover qual item? ');
     imprimir();
-    int item = stdin.readByteSync();
+    int item = int.parse(stdin.readLineSync());
     if (item < 1 || item > produtos.length){
       print('\x1B[2J\x1B[0;0H');
       print('Produto Invalido !');
@@ -27,6 +28,7 @@ remover(){
       removeu = true;
       print('\x1B[2J\x1B[0;0H');
       print('$produtoRemovido removido com sucesso !');
+      print('\n');
     }
   }while(removeu != true);
 }
@@ -52,8 +54,8 @@ menu(){
       print('\x1B[2J\x1B[0;0H');
       remover();
     }else if (opcao == '4'){
-      print('######### Programa finalizado ! #########');
       print('\x1B[2J\x1B[0;0H'); // limpa tela
+      print('********** Programa finalizado **********');
     }else{
       print('\x1B[2J\x1B[0;0H');
       print('Comando Invalido !');
