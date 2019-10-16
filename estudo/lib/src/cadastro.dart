@@ -2,7 +2,7 @@ import 'dart:io';
 
 List<Map<String, dynamic>> cadastros = [];
 
-main(){
+cadastrarPessoa(){
 
   bool cond = true;
 

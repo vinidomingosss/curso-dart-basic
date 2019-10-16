@@ -2,7 +2,7 @@ import 'dart:io';//importa para usar o readlineSync
 
 List<String> produtos = [];
 
-main(){
+carrinhoCompras(){
   menu();
 }
 
@@ -47,16 +47,20 @@ menu(){
       String produto = stdin.readLineSync();
       produtos.add(produto);
       print('\x1B[2J\x1B[0;0H');
-    }else if(opcao == '2' && produtos.length > 0){
+    }else if(opcao == '2' && produtos.isNotEmpty){
       print('\x1B[2J\x1B[0;0H');
       imprimir();
-    }else if (opcao == '2' && produtos.length < 1){
+    }else if (opcao == '2' && produtos.isEmpty){
       print('\x1B[2J\x1B[0;0H');
       print('Nada para listar !');
       print('\n');
-    }else if(opcao == '3' && produtos.length > 0){
+    }else if(opcao == '3' && produtos.isNotEmpty){
       print('\x1B[2J\x1B[0;0H');
       remover();
+    }else if (opcao == '3' && produtos.isEmpty){
+      print('\x1B[2J\x1B[0;0H');
+      print('Nada para Remover !');
+      print('\n');
     }else if (opcao == '4'){
       print('\x1B[2J\x1B[0;0H'); // limpa tela
       print('********** Programa finalizado **********');
